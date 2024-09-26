@@ -18,9 +18,10 @@ class StyleFormMixin:
 
 
 class MailingForm(StyleFormMixin, forms.ModelForm):
-    clients = forms.CheckboxSelectMultiple()
-    # time_start = forms.DateTimeField()
-    # time_end = forms.DateTimeField()
+    clients = forms.ModelMultipleChoiceField(
+        queryset=Client.objects.none(),
+        widget=forms.CheckboxSelectMultiple
+    )
 
     class Meta:
         model = Mailing

@@ -8,7 +8,7 @@ class Client(models.Model):
     email = models.EmailField(verbose_name='электронная почта', unique=True)
     fio = models.CharField(max_length=100, verbose_name='ФИО')
     comment = models.TextField(verbose_name='комментарий')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь', **NULLABLE)
 
     def __str__(self):
         return f'{self.email}  {self.fio}'
