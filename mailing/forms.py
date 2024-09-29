@@ -72,9 +72,6 @@ class MailingManagerUpdateForm(StyleFormMixin, forms.ModelForm):
 
 
 class ClientForm(StyleFormMixin, forms.ModelForm):
-    def __init__(self, user, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['user'].disabled = True
 
     class Meta:
         model = Client
