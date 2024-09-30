@@ -44,10 +44,10 @@ class Mailing(models.Model):
     status = models.CharField(max_length=10, choices=CHOICES_STATUS, verbose_name='статус', default='created')
     time_start = models.TimeField(verbose_name='начало времени отправки',
                                   help_text='Введите время в формате ЧЧ:ММ через двоеточие. Начало времени отправки '
-                                            'быть раньше окончания времени отправки ')
+                                            'должно быть раньше окончания времени отправки ')
     time_end = models.TimeField(verbose_name='окончание времени отправки',
                                 help_text='Введите время в формате ЧЧ:ММ через  двоеточие. Начало времени отправки '
-                                            'быть раньше окончания времени отправки ')
+                                            'должно быть раньше окончания времени отправки ')
     periodicity = models.CharField(max_length=20, choices=CHOICES_TIME, verbose_name='периодичность')
     day = models.IntegerField(verbose_name='день', **NULLABLE,
                               help_text='Введите число при периодичности раз в месяц. Число должно быть от 1 до 31')
@@ -72,7 +72,7 @@ class MailingLog(models.Model):
         ('0', 'Неуспешно'),
     )
 
-    time_try = models.DateTimeField(default=datetime.now, verbose_name='дата и время попытки')
+    time_try = models.DateTimeField(auto_now_add=True, verbose_name='дата и время попытки')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, verbose_name='статус попытки')
     server_response = models.TextField(verbose_name='ответ почтового сервера', **NULLABLE)
     client = models.CharField(max_length=150, verbose_name='клиент', **NULLABLE)
